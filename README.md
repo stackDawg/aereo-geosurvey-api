@@ -6,7 +6,8 @@ Upload a Shapefile or a KML file and get back the area of every polygon and the 
 line, in metres. It's built with FastAPI, and a small React map viewer sits on top so you can see
 the results.
 
-**Live demo:** LIVE_DEMO_URL (map viewer) · LIVE_DEMO_URL/docs (API docs)
+**Live demo:** <https://aereo-geosurvey-api.onrender.com> (map viewer) ·
+<https://aereo-geosurvey-api.onrender.com/docs> (API docs)
 <br>The demo runs on a free server that sleeps when idle, so the first request can take about a
 minute.
 
