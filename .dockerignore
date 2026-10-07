@@ -1,0 +1,14 @@
+.venv/
+**/__pycache__/
+.pytest_cache/
+.ruff_cache/
+.git/
+.github/
+.env
+data/
+tests/
+docs/
+scripts/
+frontend/node_modules/
+frontend/dist/
+frontend/*.tsbuildinfo

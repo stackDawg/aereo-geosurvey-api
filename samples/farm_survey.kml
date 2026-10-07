@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+  <Document>
+    <name>Hosakote farm survey</name>
+    <Schema name="plot" id="plot">
+      <SimpleField name="survey_no" type="int"/>
+      <SimpleField name="crop" type="string"/>
+      <SimpleField name="irrigated" type="bool"/>
+    </Schema>
+    <Folder>
+      <name>Plots</name>
+      <Placemark id="plot-101">
+        <name>Plot 101</name>
+        <description>Ragi field, north boundary along the access road.</description>
+        <ExtendedData>
+          <Data name="owner"><value>K. Ramesh</value></Data>
+          <SchemaData schemaUrl="#plot">
+            <SimpleData name="survey_no">101</SimpleData>
+            <SimpleData name="crop">ragi</SimpleData>
+            <SimpleData name="irrigated">false</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs><LinearRing><coordinates>
+            77.7900,13.0700,0 77.7915,13.0700,0 77.7915,13.0712,0 77.7900,13.0712,0 77.7900,13.0700,0
+          </coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark id="plot-102">
+        <name>Plot 102</name>
+        <description>Sugarcane, with a farm pond excluded from the cultivated area.</description>
+        <ExtendedData>
+          <Data name="owner"><value>S. Lakshmi</value></Data>
+          <SchemaData schemaUrl="#plot">
+            <SimpleData name="survey_no">102</SimpleData>
+            <SimpleData name="crop">sugarcane</SimpleData>
+            <SimpleData name="irrigated">true</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs><LinearRing><coordinates>
+            77.7917,13.0700,0 77.7935,13.0700,0 77.7935,13.0714,0 77.7917,13.0714,0 77.7917,13.0700,0
+          </coordinates></LinearRing></outerBoundaryIs>
+          <innerBoundaryIs><LinearRing><coordinates>
+            77.7922,13.0704,0 77.7926,13.0704,0 77.7926,13.0707,0 77.7922,13.0707,0 77.7922,13.0704,0
+          </coordinates></LinearRing></innerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark id="plot-103">
+        <name>Plot 103</name>
+        <description>One holding split into two parcels by a canal.</description>
+        <ExtendedData>
+          <Data name="owner"><value>M. Prakash</value></Data>
+        </ExtendedData>
+        <MultiGeometry>
+          <Polygon><outerBoundaryIs><LinearRing><coordinates>
+            77.7900,13.0715,0 77.7910,13.0715,0 77.7910,13.0725,0 77.7900,13.0725,0 77.7900,13.0715,0
+          </coordinates></LinearRing></outerBoundaryIs></Polygon>
+          <Polygon><outerBoundaryIs><LinearRing><coordinates>
+            77.7912,13.0715,0 77.7920,13.0715,0 77.7920,13.0725,0 77.7912,13.0725,0 77.7912,13.0715,0
+          </coordinates></LinearRing></outerBoundaryIs></Polygon>
+        </MultiGeometry>
+      </Placemark>
+      <Placemark id="plot-104">
+        <name>Plot 104</name>
+        <description>Digitising error: the boundary crosses itself.</description>
+        <Polygon>
+          <outerBoundaryIs><LinearRing><coordinates>
+            77.7925,13.0716,0 77.7935,13.0726,0 77.7935,13.0716,0 77.7925,13.0726,0 77.7925,13.0716,0
+          </coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Access roads</name>
+      <Placemark id="road-1">
+        <name>Village road</name>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>77.7895,13.0713 77.7916,13.0713 77.7940,13.0713</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="road-2">
+        <name>Field track</name>
+        <LineString>
+          <coordinates>77.7916,13.0700 77.7916,13.0713 77.7911,13.0725</coordinates>
+        </LineString>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Assets</name>
+      <Placemark id="well-1">
+        <name>Borewell 1</name>
+        <ExtendedData><Data name="depth_ft"><value>650</value></Data></ExtendedData>
+        <Point><coordinates>77.7908,13.0706,0</coordinates></Point>
+      </Placemark>
+      <Placemark id="shed-1">
+        <name>Storage shed (3D model)</name>
+        <Model>
+          <Location><longitude>77.7930</longitude><latitude>13.0710</latitude><altitude>0</altitude></Location>
+          <Link><href>models/shed.dae</href></Link>
+        </Model>
+      </Placemark>
+    </Folder>
+  </Document>
+</kml>

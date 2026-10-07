@@ -1,0 +1,14 @@
+# Render Blueprint: one free web service built from the Dockerfile.
+#
+# It runs without Redis or PostgreSQL (in-process processing, SQLite). The free plan has no
+# persistent disk and sleeps when idle, so the demo's data resets on restart; the map viewer
+# then creates a fresh API key automatically.
+services:
+  - type: web
+    name: aereo-geosurvey-api
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: GEOAPI_MAX_UPLOAD_SIZE_MB
+        value: "25"

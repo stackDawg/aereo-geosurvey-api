@@ -1,0 +1,65 @@
+# The full stack: API (+ map viewer), RQ worker, PostgreSQL and Redis.
+#
+#   docker compose up --build
+#
+# then open http://localhost:8000. Credentials here are for local development only.
+
+x-app: &app
+  build: .
+  image: geo-measure-api:local
+  environment:
+    GEOAPI_DATABASE_URL: postgresql+psycopg://geo:geo@db:5432/geo
+    GEOAPI_REDIS_URL: redis://redis:6379/0
+    GEOAPI_STORAGE_DIR: /srv/data/uploads
+  volumes:
+    # The worker reads the files the API stored, so both mount the same volume.
+    - uploads:/srv/data/uploads
+
+services:
+  api:
+    <<: *app
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  worker:
+    <<: *app
+    command: ["rq", "worker", "--url", "redis://redis:6379/0", "geo-processing"]
+    depends_on:
+      api:
+        condition: service_healthy # the API creates the database schema on startup
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: geo
+      POSTGRES_PASSWORD: geo
+      POSTGRES_DB: geo
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U geo -d geo"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  redis:
+    image: redis:7-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+volumes:
+  uploads:
+  pgdata:
